@@ -11,7 +11,8 @@
         "@wdio/mocha-framework": "~7.16.6",
         "@wdio/spec-reporter": "~7.16.4",
         "chromedriver": "~96.0.0",
-        "wdio-chromedriver-service": "~7.2.2"
+        "wdio-chromedriver-service": "~7.2.2",
+        "wdio-intercept-service": "~4.1.10"
     },
     "scripts": {
         "wdio": "wdio run wdio.conf.js"
