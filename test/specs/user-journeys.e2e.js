@@ -45,7 +45,7 @@ describe('User journeys', () => {
       .toHaveUrlContaining('/kosik');
   });
 
-  it('Log in', async () => {
+  it('Log in and log out', async () => {
 
     await browser
       .url(browser.config.baseUrl);
@@ -62,6 +62,15 @@ describe('User journeys', () => {
     await $('.o-button')
       .click();
       
+    await expect($('.c-flash-message--info'))
+      .toBeDisplayedInViewport();
+
+    await $('.c-header__my-account ')
+      .click();
+
+    await $('.c-user-menu__logout')
+      .click();
+
     await expect($('.c-flash-message--info'))
       .toBeDisplayedInViewport();
   });
