@@ -20,9 +20,12 @@ const addToCart = async () => {
     .click();
 };
 
-describe('User journey #1', () => {
+describe('User journeys', () => {
 
-  before(async () => {
+  beforeEach(async () => {
+    await browser
+      .reloadSession();
+
     await browser
       .setWindowSize(1920, 1080);
   });
@@ -40,14 +43,6 @@ describe('User journey #1', () => {
 
     await expect(browser)
       .toHaveUrlContaining('/kosik');
-  });
-});
-
-describe('User journay #2', () => {
-
-  before(async () => {
-    await browser
-      .setWindowSize(1920, 1080);
   });
 
   it('Log in and log out', async () => {
@@ -79,14 +74,6 @@ describe('User journay #2', () => {
     await expect($('.c-flash-message--info'))
       .toBeDisplayedInViewport();
   });
-});
-
-describe('User journey #3', () => {
-
-  before(async () => {
-    await browser
-      .setWindowSize(1920, 1080);
-  });
 
   it('Go to new items category', async () => {
 
@@ -98,14 +85,6 @@ describe('User journey #3', () => {
 
     await expect(browser)
       .toHaveUrlContaining('/nove-skladem');
-  });
-});
-
-describe('User journey #4', () => {
-
-  before(async () => {
-    await browser
-      .setWindowSize(1920, 1080);
   });
 
   it('Create order', async () => {
