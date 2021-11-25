@@ -171,6 +171,7 @@ describe('User journeys', () => {
       .setValue(order.name);
 
     const lastName = await $('#LastName')
+    await lastName
       .setValue(order.surname);
 
     const street = await $('#Street')
