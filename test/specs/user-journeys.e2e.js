@@ -13,7 +13,7 @@ const order = {
 
 const lookForProduct = async seachTerm => {
   await $('#fulltext-search-input')
-    .addValue(seachTerm);
+    .setValue(seachTerm);
 };
 
 const chooseProduct = async n => {   
@@ -146,25 +146,25 @@ describe('User journeys', () => {
       .click();
 
     await $('#FirstName')
-      .addValue(order.name);
+      .setValue(order.name);
 
     await $('#LastName')
-      .addValue(order.surname);
+      .setValue(order.surname);
 
     await $('#Street')
-      .addValue(order.street);
+      .setValue(order.street);
 
     await $('#City')
-      .addValue(order.city);
+      .setValue(order.city);
 
     await $('#ZipCode')
-      .addValue(order.zip);
+      .setValue(order.zip);
 
     await $('#Email')
-      .addValue(order.email);
+      .setValue(order.email);
 
     await $('#Phone')
-      .addValue(order.phone);
+      .setValue(order.phone);
 
     await $('[for="OrderConsents_0__IsChecked"]')
       .click();
