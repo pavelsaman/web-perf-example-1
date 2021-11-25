@@ -20,7 +20,7 @@ spec:
             - name: MODE
               value: "user-journey"
             - name: SPEC
-              value: "wdio/specs/journey.js"
+              value: "test/specs/user-journeys.e2e.js"
             - name: BASE_URL
               value: 'https://alpinepro-outlet.cz/'
             - name: ENV_PRINT
