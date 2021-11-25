@@ -16,7 +16,7 @@ spec:
             image: quay.io/canarytrace/canarytrace-pub:4.15.0-pro-20211121121337-60
             env:
             - name: GIT_REVISION
-              value: fb953e8
+              value: 1de346f
             - name: MODE
               value: "user-journey"
             - name: SPEC
@@ -48,7 +48,7 @@ spec:
             - name: PT_AUDIT_THROTTLING
               value: desktopDense4G
             - name: AVAILABILITY_CHECK
-              value: no
+              value: "no"
             - name: MEMORY_INTERCEPT
               value: allow
             - name: COVERAGE_AUDIT
