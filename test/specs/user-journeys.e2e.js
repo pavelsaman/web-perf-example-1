@@ -38,8 +38,8 @@ describe('User journeys', () => {
     await browser
       .url(browser.config.baseUrl);
 
-    await $('#fulltext-search-input')
-      .setValue('ponožky');
+    const searchInput = await $('#fulltext-search-input')
+    await searchInput.setValue('ponožky');
       
     await $(`#search-item-1`)
       .click();
