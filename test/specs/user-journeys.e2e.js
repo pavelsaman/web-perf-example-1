@@ -11,6 +11,35 @@ const order = {
   paymentMethod: 'BankTransfer'
 }
 
+const lookForProduct = async seachTerm => {
+
+  const searchInput = await $('#fulltext-search-input')
+  await searchInput
+    .setValue(seachTerm);
+};
+
+const chooseProduct = async n => {   
+
+  const item = await $(`#search-item-${n}`)
+  await item
+    .click();
+};
+
+const addToCart = async () => {
+  
+  const addToCart = await $('#add-to-cart')
+  await addToCart
+    .click();
+
+  const popupImage = await $('.popup__image');
+  expect(popupImage)
+    .toBeDisplayedInViewport();
+
+  const toCartBtn = await $('//div[@id="popup-product-content"]//a[@href="/kosik"]')
+  await toCartBtn
+    .click();
+};
+
 describe('User journeys', () => {
 
   beforeEach(async () => {
@@ -38,11 +67,9 @@ describe('User journeys', () => {
     await browser
       .url(browser.config.baseUrl);
 
-    const searchInput = await $('#fulltext-search-input')
-    await searchInput.setValue('ponožky');
+    await lookForProduct('ponožky');
       
-    await $(`#search-item-1`)
-      .click();
+    await chooseProduct(1);
 
     await addToCart();
 
@@ -58,25 +85,31 @@ describe('User journeys', () => {
     await browser
       .url(browser.config.baseUrl);
 
-    await $('[href="/muj-profil"]')
+    const myProfileBtn = await $('[href="/muj-profil"]')
+    await myProfileBtn
       .click();
 
-    await $('#Email')
+    const email = await $('#Email')
+    await email
       .setValue(browser.config.username);
 
-    await $('#Password')
+    const pwd = await $('#Password')
+    await pwd
       .setValue(browser.config.password);
 
-    await $('.o-button')
+    const loginBtn = await $('.o-button')
+    await loginBtn
       .click();
       
     await expect($('.c-flash-message--info'))
       .toBeDisplayedInViewport();
 
-    await $('.c-header__my-account ')
+    const myProfileLoggedBtn = await $('.c-header__my-account')
+    await myProfileLoggedBtn
       .click();
 
-    await $('.c-user-menu__logout')
+    const logoutBtn = await $('.c-user-menu__logout')
+    await logoutBtn
       .click();
 
     await expect($('.c-flash-message--info'))
@@ -91,7 +124,8 @@ describe('User journeys', () => {
     await browser
       .url(browser.config.baseUrl);
 
-    await $('a[href="/nove-skladem"]')
+    const menuItem = await $('a[href="/nove-skladem"]')
+    await menuItem
       .click();
 
     await expect(browser)
@@ -102,63 +136,69 @@ describe('User journeys', () => {
     await browser
       .url(browser.config.baseUrl);
 
-    await $('#fulltext-search-input')
-      .setValue('ponožky');
+    await lookForProduct('ponožky');
 
-    await $(`#search-item-1`)
+    await chooseProduct(1);
+
+    await addToCart();
+
+    const continueTo2ndStepBtn = await $('[href="/doprava-a-platba"]')
+    await continueTo2ndStepBtn
       .click();
 
-    await $('#add-to-cart')
-      .click();
-  
-    await $('[href="/kosik"]')
-      .click();
-
-    await $('[href="/doprava-a-platba"]')
-      .click();
-
-    await $(`[for="${order.shippingMethod}"]`)
+    const shippingMethod = await $(`[for="${order.shippingMethod}"]`)
+    await shippingMethod
       .click();
 
     let summaries = await $$('.c-summary-box__footer-item-label');
     await expect(summaries[summaries.length - 1])
       .toHaveText('DPD');
 
-    await $(`[for="${order.paymentMethod}"]`)
+    const paymentMethod = await $(`[for="${order.paymentMethod}"]`)
+    await paymentMethod
       .click();
 
     summaries = await $$('.c-summary-box__footer-item-label');
     await expect(summaries[summaries.length - 1])
       .toHaveText('Bankovní převod');
 
-    await $('[href="/osobni-udaje"]')
+    const goToPersonalInfoBtn = await $('[href="/osobni-udaje"]')
+    await goToPersonalInfoBtn
       .click();
 
-    await $('#FirstName')
+    const firstName = await $('#FirstName')
+    await firstName
       .setValue(order.name);
 
-    await $('#LastName')
+    const lastName = await $('#LastName')
       .setValue(order.surname);
 
-    await $('#Street')
+    const street = await $('#Street')
+    await street
       .setValue(order.street);
 
-    await $('#City')
+    const city = await $('#City')
+    await city
       .setValue(order.city);
 
-    await $('#ZipCode')
+    const zip = await $('#ZipCode')
+    await zip
       .setValue(order.zip);
 
-    await $('#Email')
+    const email = await $('#Email')
+    await email
       .setValue(order.email);
 
-    await $('#Phone')
+    const phone = await $('#Phone')
+    await phone
       .setValue(order.phone);
 
-    await $('[for="OrderConsents_0__IsChecked"]')
+    const consent = await $('[for="OrderConsents_0__IsChecked"]')
+    await consent
       .click();
 
-    await $('#submit-button')
+    const submitBtn = await $('#submit-button')
+    await submitBtn
       .click();
 
     await expect(browser)
