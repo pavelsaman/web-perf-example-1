@@ -13,6 +13,7 @@ const chooseProduct = async n => {
 };
 
 const addToCart = async () => {
+  
   await $('#add-to-cart')
     .click();
 
@@ -31,6 +32,7 @@ describe('User journeys', () => {
   });
 
   it('Open homepage', async () => {
+
     await browser
       .url(browser.config.baseUrl);
   });
