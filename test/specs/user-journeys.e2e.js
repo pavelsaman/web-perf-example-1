@@ -30,6 +30,15 @@ describe('User journeys', () => {
       .setWindowSize(1920, 1080);
   });
 
+  it('Open homepage', async () => {
+    await browser
+      .url(browser.config.baseUrl);
+  });
+
+  it('Performance audit', async () => {
+    await browser.performAudit(await browser.getUrl());
+  });
+
   it('Search product and put one item to cart', async () => {
 
     await browser
