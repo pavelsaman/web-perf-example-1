@@ -13,8 +13,16 @@ const chooseProduct = async n => {
 };
 
 const addToCart = async () => {
+  await browser
+    .setupInterceptor();
+
   await $('#add-to-cart')
     .click();
+
+  await browser
+    .expectRequest('POST', '/Order/AddToCart', 200);
+  await browser
+    .expectRequest('POST', '/Order/InvokeCartPanel', 200);
 
   await $('[href="/kosik"]')
     .click();
@@ -24,7 +32,7 @@ describe('User journeys', () => {
 
   beforeEach(async () => {
     await browser
-      .reloadSession();
+      .clear();
 
     await browser
       .setWindowSize(1920, 1080);
@@ -76,6 +84,9 @@ describe('User journeys', () => {
 
     await expect($('.c-flash-message--info'))
       .toBeDisplayedInViewport();
+
+    await expect($('#hp-banner'))
+      .toBeDisplayedInViewport();
   });
 
   it('Go to new items category', async () => {
@@ -103,22 +114,29 @@ describe('User journeys', () => {
     await $('[href="/doprava-a-platba"]')
       .click();
 
-    await browser.setupInterceptor();
+    await browser
+      .setupInterceptor();
 
     await $(`[for="${order.shippingMethod}"]`)
       .click();
 
-    await browser.expectRequest('POST', '/Order/SetShippingMethod', 200);
-    await browser.expectRequest('POST', '/Order/InvokeOverviewBox', 200);
-    await expect($$('.c-summary-box__footer-item-label')[1])
+    await browser
+      .expectRequest('POST', '/Order/SetShippingMethod', 200);
+    await browser
+      .expectRequest('POST', '/Order/InvokeOverviewBox', 200);
+    const summaries = await $$('.c-summary-box__footer-item-label');
+    await expect(summaries[summaries.length - 1])
       .toHaveText('DPD');
 
     await $(`[for="${order.paymentMethod}"]`)
       .click();
 
-    await browser.expectRequest('POST', '/Order/SetPaymentMethod', 200);
-    await browser.expectRequest('POST', '/Order/InvokeOverviewBox', 200);
-    await expect($$('.c-summary-box__footer-item-label')[2])
+    await browser
+      .expectRequest('POST', '/Order/SetPaymentMethod', 200);
+    await browser
+      .expectRequest('POST', '/Order/InvokeOverviewBox', 200);
+    
+    await expect(summaries[summaries.length - 1])
       .toHaveText('Bankovní převod');
 
     await $('[href="/osobni-udaje"]')
