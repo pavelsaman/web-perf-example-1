@@ -1,6 +1,15 @@
 
-const credentials = require('../../fixtures/credentials.json');
-const order = require('../../fixtures/order.json');
+const order = {
+  name: 'Test',
+  surname: 'Inveo',
+  phone: '+420777666888',
+  email: 'pavel.saman@inveo.cz',
+  street: 'Testovičova 15',
+  city: 'Test',
+  zip: '14000',
+  shippingMethod: 'dpd',
+  paymentMethod: 'BankTransfer'
+}
 
 const lookForProduct = async seachTerm => {
   await $('#fulltext-search-input')
@@ -25,7 +34,9 @@ describe('User journeys', () => {
 
   beforeEach(async () => {
     await browser
-      .clear();
+      .sendCommand('Network.clearBrowserCookies', {});
+    await browser
+      .sendCommand('Network.clearBrowserCache', {});
 
     await browser
       .setWindowSize(1920, 1080);
@@ -68,10 +79,10 @@ describe('User journeys', () => {
       .click();
 
     await $('#Email')
-      .addValue(credentials.email);
+      .addValue(browser.config.username);
 
     await $('#Password')
-      .addValue(credentials.password);
+      .addValue(browser.config.password);
 
     await $('.o-button')
       .click();

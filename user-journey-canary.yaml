@@ -16,7 +16,7 @@ spec:
             image: quay.io/canarytrace/canarytrace-pub:4.15.0-pro-20211121121337-60
             env:
             - name: GIT_REVISION
-              value: 1de346f
+              value: 9c86da4
             - name: MODE
               value: "user-journey"
             - name: SPEC
@@ -43,6 +43,16 @@ spec:
                 configMapKeyRef:
                   name: git-config
                   key: git.repository.port
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret-user
+                  key: username
+            - name: PASS
+              valueFrom:
+                secretKeyRef:
+                  name: secret-user
+                  key: password
             - name: PT_AUDIT
               value: allow
             - name: PT_AUDIT_THROTTLING
