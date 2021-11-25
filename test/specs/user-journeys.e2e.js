@@ -79,10 +79,10 @@ describe('User journeys', () => {
       .click();
 
     await $('#Email')
-      .addValue(browser.config.username);
+      .setValue(browser.config.username);
 
     await $('#Password')
-      .addValue(browser.config.password);
+      .setValue(browser.config.password);
 
     await $('.o-button')
       .click();
