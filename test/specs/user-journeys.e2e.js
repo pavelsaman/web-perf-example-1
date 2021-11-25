@@ -11,25 +11,6 @@ const order = {
   paymentMethod: 'BankTransfer'
 }
 
-const lookForProduct = async seachTerm => {
-  await $('#fulltext-search-input')
-    .setValue(seachTerm);
-};
-
-const chooseProduct = async n => {   
-  await $(`#search-item-${n}`)
-    .click();
-};
-
-const addToCart = async () => {
-  
-  await $('#add-to-cart')
-    .click();
-
-  await $('[href="/kosik"]')
-    .click();
-};
-
 describe('User journeys', () => {
 
   beforeEach(async () => {
@@ -57,9 +38,11 @@ describe('User journeys', () => {
     await browser
       .url(browser.config.baseUrl);
 
-    await lookForProduct('ponožky');
+    await $('#fulltext-search-input')
+      .setValue('ponožky');
       
-    await chooseProduct(1);
+    await $(`#search-item-1`)
+      .click();
 
     await addToCart();
 
@@ -119,11 +102,17 @@ describe('User journeys', () => {
     await browser
       .url(browser.config.baseUrl);
 
-    await lookForProduct('ponožky');
+    await $('#fulltext-search-input')
+      .setValue('ponožky');
 
-    await chooseProduct(1);
+    await $(`#search-item-1`)
+      .click();
 
-    await addToCart();
+    await $('#add-to-cart')
+      .click();
+  
+    await $('[href="/kosik"]')
+      .click();
 
     await $('[href="/doprava-a-platba"]')
       .click();
