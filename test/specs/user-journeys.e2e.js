@@ -43,6 +43,9 @@ describe('User journeys', () => {
 
     await expect(browser)
       .toHaveUrlContaining('/kosik');
+
+    await expect($('[href="/doprava-a-platba"]'))
+      .toBeDisplayedInViewport();
   });
 
   it('Log in and log out', async () => {
