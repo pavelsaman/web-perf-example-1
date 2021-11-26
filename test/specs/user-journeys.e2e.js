@@ -70,6 +70,10 @@ describe('User journey', () => {
       .toHaveUrlContaining('/nove-skladem');
   });
 
+  it('Performance audit', async () => {
+    await browser.performAudit(await browser.getUrl());
+  });
+
   it('Open login popup', async () => {
 
     const myProfileBtn = await $('[href="/muj-profil"]');
@@ -147,12 +151,12 @@ describe('User journey', () => {
 
     await browser.waitUntil(
     async () => {
-        const summaries = await $$('.c-summary-box__footer-item-label');
-        const summariesTexts = await Promise.all(summaries.map(async el => {
+      const summaries = await $$('.c-summary-box__footer-item-label');
+      const summariesTexts = await Promise.all(summaries.map(async el => {
         const text = await el.getText();
         return text;
-        }));
-        return summariesTexts.includes('DPD') === true;
+      }));
+      return summariesTexts.includes('DPD') === true;
     }
     );
   });
