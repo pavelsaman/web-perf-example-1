@@ -42,7 +42,7 @@ const addToCart = async () => {
 
 describe('User journey', () => {
 
-  beforeEach(async () => {
+  before(async () => {
     await browser
       .setWindowSize(1920, 1080);
   });
