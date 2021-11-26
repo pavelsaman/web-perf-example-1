@@ -23,3 +23,5 @@ Scripts for a user journey using Canarytrace stack.
 - provider tools like `gcloud`
 - LENS or other GUI tool for K8s cluster management
 - docker service on localhost
+- Chrome or Chromium on localhost
+- git on localhost
