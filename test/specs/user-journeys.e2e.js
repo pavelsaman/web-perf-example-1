@@ -70,7 +70,7 @@ describe('User journey', () => {
       .toHaveUrlContaining('/nove-skladem');
   });
 
-  it('Performance audit', async () => {
+  it('Performance audit category page', async () => {
     await browser.performAudit(await browser.getUrl());
   });
 
