@@ -150,14 +150,14 @@ describe('User journey', () => {
       .click();
 
     await browser.waitUntil(
-    async () => {
-      const summaries = await $$('.c-summary-box__footer-item-label');
-      const summariesTexts = await Promise.all(summaries.map(async el => {
-        const text = await el.getText();
-        return text;
-      }));
-      return summariesTexts.includes('DPD') === true;
-    }
+      async () => {
+        const summaries = await $$('.c-summary-box__footer-item-label');
+        const summariesTexts = await Promise.all(summaries.map(async el => {
+          const text = await el.getText();
+          return text;
+        }));
+        return summariesTexts.includes('DPD') === true;
+      }
     );
   });
 
