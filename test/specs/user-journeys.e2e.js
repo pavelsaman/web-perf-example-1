@@ -56,9 +56,9 @@ describe('User journey', () => {
       .toBeDisplayedInViewport();
   });
 
-  /*it('Performance audit', async () => {
+  it('Performance audit', async () => {
     await browser.performAudit(await browser.getUrl());
-  });*/
+  });
 
   it('Go to category', async () => {
 
