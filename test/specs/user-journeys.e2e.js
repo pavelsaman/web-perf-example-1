@@ -145,16 +145,16 @@ describe('User journey', () => {
     await shippingMethod
       .click();
 
-      await browser.waitUntil(
-        async () => {
-          const summaries = await $$('.c-summary-box__footer-item-label');
-          const summariesTexts = await Promise.all(summaries.map(async el => {
-            const text = await el.getText();
-            return text;
-          }));
-          return summariesTexts.includes('DPD') === true;
-        }
-      );
+    await browser.waitUntil(
+    async () => {
+        const summaries = await $$('.c-summary-box__footer-item-label');
+        const summariesTexts = await Promise.all(summaries.map(async el => {
+        const text = await el.getText();
+        return text;
+        }));
+        return summariesTexts.includes('DPD') === true;
+    }
+    );
   });
 
   it('Choose payment', async () => {
