@@ -11,35 +11,6 @@ const order = {
   paymentMethod: 'BankTransfer'
 }
 
-const lookForProduct = async seachTerm => {
-
-  const searchInput = await $('#fulltext-search-input')
-  await searchInput
-    .setValue(seachTerm);
-};
-
-const chooseProduct = async n => {   
-
-  const item = await $(`#search-item-${n}`)
-  await item
-    .click();
-};
-
-const addToCart = async () => {
-  
-  const addToCart = await $('#add-to-cart')
-  await addToCart
-    .click();
-
-  const popupImage = await $('.popup__image');
-  expect(popupImage)
-    .toBeDisplayedInViewport();
-
-  const toCartBtn = await $('//div[@id="popup-product-content"]//a[@href="/kosik"]')
-  await toCartBtn
-    .click();
-};
-
 describe('User journey', () => {
 
   before(async () => {
@@ -52,7 +23,8 @@ describe('User journey', () => {
     await browser
       .url(browser.config.baseUrl);
 
-    await expect($('.c-category-tiles__item'))
+    const categoryList = await $('.c-category-tiles__item');
+    await expect(categoryList)
       .toBeDisplayedInViewport();
   });
 
@@ -89,11 +61,11 @@ describe('User journey', () => {
 
     const email = await $('#Email');
     await email
-      .setValue('samanpavel+01@gmail.com');
+      .setValue(browser.config.username);
 
     const pwd = await $('#Password')
     await pwd
-      .setValue('12345a');
+      .setValue(browser.config.password);
   });
 
   it('Log in', async () => {
@@ -102,29 +74,53 @@ describe('User journey', () => {
     await loginBtn
       .click();
       
-    await expect($('.c-flash-message--info'))
+    const flashMsg = await $('.c-flash-message--info');
+    await expect(flashMsg)
       .toBeDisplayedInViewport();
 
-    await expect($('#c-product-list__item-container'))
+    const products = await $('#c-product-list__item-container')
+    await expect(products)
       .toBeDisplayedInViewport();
   });
 
   it('Search product', async () => {
 
-    await lookForProduct('ponožky');
+    const searchInput = await $('#fulltext-search-input')
+    await searchInput
+      .setValue('ponožky');
+
+    const searchResults = await $('#search-result-container');
+    await expect(searchResults)
+      .toBeDisplayedInViewport();
   });
 
   it('Choose product', async () => {
 
-    await chooseProduct(1);
+    const item = await $(`#search-item-1`)
+    await item
+      .click();
+
+    const addToCartBtn = await $('#add-to-cart');
+    await expect(addToCartBtn)
+      .toBeDisplayedInViewport();
   });
 
   it('Open product popup', async () => {
 
-    await addToCart();
+    const addToCart = await $('#add-to-cart')
+    await addToCart
+      .click();
+
+    const popupImage = await $('.popup__image');
+    await expect(popupImage)
+      .toBeDisplayedInViewport();    
   });
 
   it('Go to cart', async () => {
+
+    const toCartBtn = await $('//div[@id="popup-product-content"]//a[@href="/kosik"]')
+    await toCartBtn
+      .click();
 
     await expect(browser)
       .toHaveUrlContaining('/kosik');
