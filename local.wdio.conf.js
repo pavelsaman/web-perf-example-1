@@ -20,6 +20,15 @@ exports.config = {
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
     //
+    // to run on Selenium in docker
+    /*
+    port: 4444,
+    hostname: 'localhost',
+    path: '/',
+    protocol: 'http',*/
+    // to run localy with chromedriver
+    services: ['chromedriver'],
+
     specs: [
         './test/specs/**/*.js'
     ],
@@ -110,7 +119,6 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber

@@ -15,6 +15,7 @@
         "wdio-intercept-service": "~4.1.10"
     },
     "scripts": {
-        "wdio": "wdio run wdio.conf.js"
+        "wdio:local": "wdio run local.wdio.conf.js",
+        "wdio:docker": "wdio run docker.wdio.conf.js"
     }
 }
