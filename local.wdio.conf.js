@@ -27,7 +27,7 @@ exports.config = {
     path: '/',
     protocol: 'http',*/
     // to run localy with chromedriver
-    services: ['chromedriver'],
+    services: ['chromedriver', 'devtools'],
 
     specs: [
         './test/specs/**/*.js'
