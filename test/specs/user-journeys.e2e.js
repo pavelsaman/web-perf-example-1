@@ -21,7 +21,7 @@ describe('User journey', () => {
   it('Open homepage', async () => {
 
     await browser
-      .url(browser.config.baseUrl);
+      .url('https://alpinepro.cz/');
 
     const categoryList = await $('.c-category-tiles__item');
     await expect(categoryList)
