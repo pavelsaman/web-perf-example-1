@@ -106,11 +106,11 @@ exports.config = {
   baseUrl: 'https://alpinepro-outlet.cz',
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout: 20000,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
-  connectionRetryTimeout: 10000,
+  connectionRetryTimeout: 20000,
   //
   // Default request retries count
   connectionRetryCount: 2,
