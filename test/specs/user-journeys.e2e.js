@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { exportWebPerfStats } = require('ps-web-perf-library');
 
 const order = {
@@ -49,7 +50,7 @@ describe('User journey', () => {
     await exportWebPerfStats(perfEntries);
   });
 
-  /*it('Go to category', async () => {
+  it('Go to category', async () => {
 
     const menuItem = await $('a[href="/nove-skladem"]');
     await menuItem
@@ -57,9 +58,15 @@ describe('User journey', () => {
 
     await expect(browser)
       .toHaveUrlContaining('/nove-skladem');
+
+    const perfEntries = await browser.execute(() => {
+    return window.performance.getEntries();
+    });
+
+    await exportWebPerfStats(perfEntries);
   });
 
-  it('Open login popup', async () => {
+  /*it('Open login popup', async () => {
 
     const myProfileBtn = await $('[href="/muj-profil"]');
     await myProfileBtn

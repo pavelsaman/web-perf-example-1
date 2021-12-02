@@ -2258,6 +2258,11 @@
   dependencies:
     "is-obj" "^2.0.0"
 
+"dotenv@10.0.0":
+  "integrity" "sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-10.0.0.tgz"
+  "version" "10.0.0"
+
 "duplexer3@^0.1.4":
   "integrity" "sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI="
   "resolved" "https://registry.npmjs.org/duplexer3/-/duplexer3-0.1.4.tgz"
@@ -3977,11 +3982,13 @@
   "resolved" "https://registry.npmjs.org/ps-list/-/ps-list-7.2.0.tgz"
   "version" "7.2.0"
 
-"ps-web-perf-library@file:../../ps-web-perf-library":
-  "resolved" "file:../../ps-web-perf-library"
+"ps-web-perf-library@file:../ps-web-perf-library":
+  "resolved" "file:../ps-web-perf-library"
   "version" "1.0.0"
   dependencies:
     "axios" "~0.24.0"
+    "dotenv" "^10.0.0"
+    "uuid" "~8.3.2"
 
 "pseudomap@^1.0.2":
   "integrity" "sha1-8FKijacOYYkX7wqKw0wa5aaChrM="

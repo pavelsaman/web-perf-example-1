@@ -19,5 +19,8 @@
     "scripts": {
         "wdio:local": "wdio run local.wdio.conf.js",
         "wdio:docker": "./wait-for-selenium && wdio run docker.wdio.conf.js"
+    },
+    "dependencies": {
+        "dotenv": "10.0.0"
     }
 }
