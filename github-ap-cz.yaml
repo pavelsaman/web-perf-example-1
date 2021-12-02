@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: git-config
+  name: git-config-ap-cz
   namespace: default
 data:
   env: "no"
-  git.repository: "https://github.com/pavelsaman/web-perf-example-1.git"
+  git.repository: "https://github.com/pavelsaman/web-perf-ap-cz.git"
   git.repository.host: "github.com"
   git.repository.port: "22"

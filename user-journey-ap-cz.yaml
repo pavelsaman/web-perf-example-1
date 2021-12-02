@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: user-journey
+  name: user-journey-ap-cz
   namespace: default
 spec:
   concurrencyPolicy: Replace
@@ -22,36 +22,36 @@ spec:
             - name: SPEC
               value: "test/specs/user-journeys.e2e.js"
             - name: BASE_URL
-              value: 'https://alpinepro-outlet.cz/'
+              value: 'https://alpinepro.cz/'
             - name: ENV_PRINT
               valueFrom:
                 configMapKeyRef:
-                  name: git-config
+                  name: git-config-ap-cz
                   key: env
             - name: GIT_REPOSITORY
               valueFrom:
                 configMapKeyRef:
-                  name: git-config
+                  name: git-config-ap-cz
                   key: git.repository
             - name: GIT_REPOSITORY_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: git-config
+                  name: git-config-ap-cz
                   key: git.repository.host
             - name: GIT_REPOSITORY_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: git-config
+                  name: git-config-ap-cz
                   key: git.repository.port
             - name: USER
               valueFrom:
                 secretKeyRef:
-                  name: secret-user
+                  name: secret-user-ap-cz
                   key: username
             - name: PASS
               valueFrom:
                 secretKeyRef:
-                  name: secret-user
+                  name: secret-user-ap-cz
                   key: password
             - name: PT_AUDIT
               value: allow
@@ -70,7 +70,7 @@ spec:
             - name: RESPONSE_INTERCEPT
               value: allow
             - name: LABELS
-              value: 'desktop, journey, ap-outlet-cz'
+              value: 'desktop, journey, ap-cz'
             - name: LICENSE
               valueFrom:
                 secretKeyRef:
