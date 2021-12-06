@@ -14,8 +14,23 @@ const order = {
 describe('User journey', () => {
 
   before(async () => {
+
     await browser
       .setWindowSize(1920, 1080);
+
+    await browser
+      .url(browser.config.baseUrl);
+
+    await browser
+      .setCookies({
+        name: 'voucherDismissed',
+        value: 'true',
+        domain: '.alpinepro-outlet.cz',
+        path: '/',
+      });
+
+    await browser
+      .cdp('Network', 'clearBrowserCache');
   });
 
   it('Open homepage', async () => {
